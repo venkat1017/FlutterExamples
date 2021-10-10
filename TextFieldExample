@@ -1,0 +1,52 @@
+//More Info can be found at https://www.nintyzeros.com/2021/10/flutter-tutorial-how-to-use-textfield.html
+
+import 'package:flutter/material.dart';
+import 'package:new_app/constants.dart';
+
+class WelcomeScreen extends StatefulWidget {
+  @override
+  _WelcomeScreenState createState() {
+    return _WelcomeScreenState();
+  }
+}
+
+class _WelcomeScreenState extends State<WelcomeScreen> {
+  TextEditingController nameController = TextEditingController();
+  String email = '';
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text('Flutter TextField - NintyZeros.com'),
+            backgroundColor: kGreenColor,
+          ),
+          body: Center(
+              child: Column(children: <Widget>[
+            Container(
+                margin: EdgeInsets.all(20),
+                child: TextField(
+                  controller: nameController,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Email',
+                  ),
+                  onChanged: (text) {
+                    setState(() {
+                      email = text;
+                      //you can access nameController in its scope to get
+                      // the value of text entered as shown below
+                      //fullName = nameController.text;
+                    });
+                  },
+                )),
+            Container(
+              margin: EdgeInsets.all(20),
+              child: Text(email),
+            )
+          ]))),
+    );
+  }
+}
